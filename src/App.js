@@ -21,12 +21,12 @@ function App() {
       setTablePot(minBet);
       setFirstThrow(0);
       setSecondThrow(0);
-      setBetAmount(0);
+      setBetAmount(minBet); // Set the initial bet amount to the minimum bet
     }
   };
 
-  // Function to handle player's turn
-  const handlePlayerTurn = () => {
+  // Function to simulate dice throws
+  const throwDice = () => {
     if (round === 0) {
       alert("You need to start a new round first.");
     } else {
@@ -39,11 +39,11 @@ function App() {
       // Check outcomes based on the dice throws
       if (firstThrowResult === 1) {
         alert("You rolled a 1. You lose 1x minimum bet.");
-        setBalance(balance - minBet);
+        setBalance(balance - betAmount);
         setRound(0);
       } else if (firstThrowResult === 6) {
         alert("You rolled a 6. You win 1x minimum bet.");
-        setBalance(balance + minBet);
+        setBalance(balance + betAmount);
         setRound(0);
       } else {
         // Player has the option to pass or bet
@@ -87,8 +87,8 @@ function App() {
         {/* Button to start a new round */}
         <button onClick={startNewRound}>Start New Round</button>
 
-        {/* Button for player's turn */}
-        <button onClick={handlePlayerTurn}>Player's Turn</button>
+        {/* Button to throw the dice */}
+        <button onClick={throwDice}>Throw Dice</button>
 
         {/* Display dice throws */}
         {round > 0 && (
